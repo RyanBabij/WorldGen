@@ -44,6 +44,7 @@ const int VERSION = 1005;
 #include <Container/Table/Table.hpp> // FOR STORING LANDMASS DATA.
 
 #include <Data/Tokenize.hpp> // FOR READING SAVEDATA.
+#include <String/String.hpp>
 
 int argWorldSize=-1;
 bool compressPNG=false;
@@ -187,6 +188,21 @@ int main (int nArgs, char ** arg )
 			std::cout<<"Tokenizing...\n";
 			
 			vToken = Tokenize::tokenize(worldDataFile,&vDelimiters);
+			
+			String saveData = FileManagerStatic::loadFile(inFile);
+			
+			//std::cout<<saveData<<".\n";
+			
+			if (saveData.startsWith("WILDCAT_WORLDGEN_SAVEDATA 10005."))
+			{
+				std::cout<<"Savefile valid.\n";
+				String s = saveData.getTagContents("MAP_SIZE");
+				std::cout<<"Map size: "<<s<<".\n";
+			}
+			else
+			{
+				std::cout<<"Error: File is invalid. Does not contain header. Check that you are loading the correct file.\n";
+			}
 			
 			// The savefile must contain at least 1 token.
 			
