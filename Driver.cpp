@@ -81,6 +81,8 @@ void printHelp()
 	std::cout<<"Compiled: "<<__DATE__<<". "<<__TIME__<<".\n";
 	std::cout<<"Compile count: "<<COMPILE_COUNT<<".\n";
 	std::cout<<"\n";
+	
+	std::cout<<"Testing Github commits.\n";
 }
 
 int main (int nArgs, char ** arg )

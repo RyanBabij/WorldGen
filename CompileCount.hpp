@@ -2,5 +2,5 @@
 #define WILDCAT_COMPILE_COUNT_HPP
 	#include <string>
 
-	const std::string COMPILE_COUNT = "1323";
+	const std::string COMPILE_COUNT = "1325";
 #endif
