@@ -22,4 +22,4 @@ And build with:
 g++ Driver.cpp -o a -Wall -Wshadow -Wpointer-arith -Wcast-qual -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-but-set-variable -I [PATH TO WILDCAT] -std=c++0x -Os -m32 -s -shared-libstdc++
 
 And if I'm building for myself:
-g++ Driver.cpp -o a -Wall -Wshadow -Wpointer-arith -Wcast-qual -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-but-set-variable -I [PATH TO WILDCAT] -std=c++0x -Ofast -m32 -s -shared-libstdc++ -mtune=native -ffast-math
+g++ Driver.cpp -o a -Wall -Wshadow -Wpointer-arith -Wcast-qual -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-but-set-variable -I [PATH TO WILDCAT] -std=c++0x -Ofast -s -shared-libstdc++ -mtune=native -ffast-math
