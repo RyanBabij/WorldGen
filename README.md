@@ -1,6 +1,5 @@
 # WorldGen
-World Generator
-
+Program for creating a random world map. The map can then be imported into another program and used for a game. Each pixel is a tile. For some games you can generate a local map for each tile. Each tile is given a seed for this purpose.
 
 ### Sample Output
 
