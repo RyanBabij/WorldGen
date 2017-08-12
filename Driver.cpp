@@ -43,6 +43,8 @@ const int VERSION = 1005;
 
 #include <Container/Table/Table.hpp> // FOR STORING LANDMASS DATA.
 
+#include <Data/Tokenize.hpp> // FOR READING SAVEDATA.
+
 int argWorldSize=-1;
 bool compressPNG=false;
 
@@ -72,6 +74,7 @@ void printHelp()
 	std::cout<<"  -wrapX. Wrap the X-axis.\n";
 	std::cout<<"  -wrapY. Wrap the Y-axis.\n";
 	std::cout<<"  -caves. Optional. Number of caves to spawn into the world. Default value: 64.\n";
+	std::cout<<"  -load \"path\". Optional. Instead of generating a world, will load this world data file.";
 	//std::cout<<"  NOT IMPLEMENTED: -id x. Each world has a unique id, if you want to generate a particular world, you can enter its id.\n";
 
 	std::cout<<"\nExample:\n<example>\n";
@@ -95,12 +98,19 @@ int main (int nArgs, char ** arg )
 	int worldSize = 1025;
 	int nWorlds = 1;
 	std::string outFile = "world";
+	
+	std::string inFile = "";
 	//bool sampleMode=false;
 
 	if (argReader.hasTag("-help") || argReader.hasTag("--help") || argReader.hasTag("-h"))
 	{
 		printHelp();
 		return 0;
+	}
+	
+	if (argReader.hasTag("-load"))
+	{
+		inFile = argReader.getStringTag("-load");
 	}
 
 	if (argReader.hasTag("-o"))
@@ -153,6 +163,63 @@ int main (int nArgs, char ** arg )
 			return 0;
 		}
 	}
+	
+	if (inFile!="")
+	{
+		std::cout<<"Loading data file: "<<inFile<<".\n";
+		
+		if ( FileManagerStatic::fileExists(inFile) )
+		{
+			std::string worldDataFile = FileManagerStatic::loadFile(inFile);
+			std::cout<<"File loaded.\n";
+			
+			//std::cout<<"File content:\n";
+			//std::cout<<worldDataFile;
+			//std::cout<<"\n\n";
+
+			Tokenize tokenize;
+			
+			Vector <std::string>*  vToken;
+			
+			Vector <char> vDelimiters = {'\n','\r'};
+			
+			
+			std::cout<<"Tokenizing...\n";
+			
+			vToken = Tokenize::tokenize(worldDataFile,&vDelimiters);
+			
+			// The savefile must contain at least 1 token.
+			
+			if (vToken->size() < 1)
+			{
+				std::cout<<"Error: File is invalid. No tokens found.\n";
+				return 0;
+			}
+			else
+			{
+				if ((*vToken)(0)=="WILDCAT_WORLDGEN_SAVEDATA 10005.")
+				{
+					std::cout<<"Savefile valid.\n";
+				}
+				else
+				{
+					std::cout<<"Error: File is invalid. Does not contain header. Check that you are loading the correct file.\n";
+				}
+			}
+			
+			std::cout<<"Finished tokenizing.\n";
+			
+			std::cout<<"Amount of tokens: "<<vToken->size()<<".\n";
+			
+			std::cout<<"First token: "<<(*vToken)(0)<<".\n";
+		}
+		else
+		{
+			std::cout<<"Error, file: "<<inFile<<" doesn't exist. Aborting.\n";
+		}
+	}
+	else
+	{
 
 	// MAKE SOME BIOMES.
 	//WorldGenerator2_Biome snow;
@@ -882,5 +949,7 @@ if(posY>0 && posX<aIsLand.nX-1 && aIsLand(posX+1,posY-1)==true && aLandmassID(po
 		printHelp();
 	}
 
+	}
+	
 	return 0;
 }
