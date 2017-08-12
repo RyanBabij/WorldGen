@@ -11,7 +11,7 @@ The program generates the heightmap, then determines the land/sea cutoff point b
 
 The program then uses similar techniques to place the biomes. To make the maps a little realistic, snow is biased to the top and bottom of the map, desert is biased to the top and bottom third of the map, and jungles are biased to the equator.
 
-The program is designed to be reasonably fast, and on my rig it generates a 1025x1025 map in about 3 seconds. In my games, 1 pixel is meant to represent a 5km square.
+The program is designed to be reasonably fast, and on my rig it generates a 1025x1025 map in about 3 seconds. In my games, 1 pixel is meant to represent a 5km square. Therefore this program generates an area of 26,265,625 square kilometers in roughly 3 seconds. This is enough area to cover Western Europe, North Africa, and Eastern Europe up to the Caspian Sea, which I think is a reasonable amount of space for most games.
 
 ### Sample Output
 
