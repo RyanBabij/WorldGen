@@ -9,7 +9,7 @@ The complexity of the map is achieved by layering multiple instances of the diam
 
 The program generates the heightmap, then determines the land/sea cutoff point based on the desired amount of land. It then uses a smoothing algorithm to smooth out the coasts. The smoothing makes the coastlines much more attractive. The heightmap is discarded and the map merely represents land or ocean. If a heightmap were to be needed, it should probably be overlaid seperately from the landmass map.
 
-The program then uses similar techniques to place the biomes. To make the maps a little realistic, snow is biased to the top and bottom of the map, desert is biased to the top and bottom third of the map, and jungles are biased to the equator.
+The program then uses similar techniques to place the biomes. To make the maps a little realistic, snow is biased to the top and bottom of the map, desert is biased to the top and bottom third of the map, and jungles are biased to the equator. Realism is secondary to gameplay, however.
 
 The program is designed to be reasonably fast, and on my rig it generates a 1025x1025 map in about 3 seconds. In my games, 1 pixel is meant to represent 25km<sup>2</sup>. Therefore this program generates an area of 26,265,625km<sup>2</sup> in roughly 3 seconds. This is enough area to cover Western Europe, North Africa, and Eastern Europe up to the Caspian Sea, which I think is a reasonable amount of space for most grand-strategy games. The program can generate landmasses several times larger than Earth, but it can take a few minutes and generate gigabytes of data.
 
