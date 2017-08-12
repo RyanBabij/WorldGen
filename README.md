@@ -3,7 +3,13 @@ Program for creating a random world map. The map can then be imported into anoth
 
 ### How does it work?
 
-The core algorithm is the [diamond-square algorithm](https://en.wikipedia.org/wiki/Diamond-square_algorithm), with some small modifications to generate better looking maps. It outputs the world as a PNG and .txt file. There are several command-line options. It is still a work in progress but looks quite nice as it is right now. 
+The core algorithm is the [diamond-square algorithm](https://en.wikipedia.org/wiki/Diamond-square_algorithm), with some small modifications to generate better looking maps. It outputs the world as a PNG and .txt file. There are several command-line options. It is still a work in progress but looks quite nice as it is right now.
+
+The complexity of the map is achieved by layering multiple instances of the diamond-square algorithm.
+
+The program generates the heightmap, then determines the land/sea cutoff point based on the desired amount of land. It then uses a smoothing algorithm to smooth out the coasts. The smoothing makes the coastlines much more attractive. The heightmap is discarded and the map merely represents land or ocean. If a heightmap were to be needed, it should probably be overlaid seperately from the landmass map.
+
+The program then uses similar techniques to place the biomes. To make the maps a little realistic, snow is biased to the top and bottom of the map, desert is biased to the top and bottom third of the map, and jungles are biased to the equator.
 
 ### Sample Output
 
