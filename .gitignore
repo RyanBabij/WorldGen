@@ -1,5 +1,5 @@
 
-a.exe
-cb.bat
-cc.bat
-ccOutput.txt
+*.exe
+*.bat
+*.txt
+*.png
